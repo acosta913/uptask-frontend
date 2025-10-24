@@ -71,3 +71,13 @@ export const taskSchema = z.object({
 });
 export type Task = z.infer<typeof taskSchema>;
 export type TaskFormData = Pick<Task, "name" | "description">;
+
+/** Team */
+const TeamMemberSchema = userSchema.pick({
+  name: true,
+  email: true,
+  _id: true,
+});
+export const teamMembersSechema = z.array(TeamMemberSchema);
+export type TeamMember = z.infer<typeof TeamMemberSchema>;
+export type TeamMemberForm = Pick<TeamMember, "email">;

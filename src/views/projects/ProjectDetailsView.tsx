@@ -3,7 +3,7 @@ import EditTaskData from "@/components/tasks/EditTaskData";
 import TaskList from "@/components/tasks/TaskList";
 import TaskModalDetails from "@/components/tasks/TaskModalDetails";
 import { useAuth } from "@/hooks/useAuth";
-import { getProjectById } from "@/services/ProjectService";
+import { getFullProject } from "@/services/ProjectService";
 import { isManager } from "@/utils/policies";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
@@ -16,7 +16,7 @@ export default function ProjectDetailsView() {
   const projectId = params.projectId!;
   const { data, isError, isLoading } = useQuery({
     queryKey: ["project", projectId],
-    queryFn: () => getProjectById(projectId),
+    queryFn: () => getFullProject(projectId),
   });
   const canEdit = useMemo(() => data?.manager === user?._id, [data, user]);
 

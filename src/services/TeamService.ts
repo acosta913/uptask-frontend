@@ -1,6 +1,6 @@
 import { isAxiosError } from "axios";
 import {
-  teamMembersSechema,
+  teamMembersSchema,
   type Project,
   type TeamMember,
   type TeamMemberForm,
@@ -51,7 +51,7 @@ export async function getProjectTeam({
   try {
     const url = `projects/${projectId}/team`;
     const { data } = await api(url);
-    const response = teamMembersSechema.safeParse(data);
+    const response = teamMembersSchema.safeParse(data);
     if (response.success) {
       return response.data;
     }
